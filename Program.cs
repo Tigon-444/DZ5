@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Reflection;
 
 namespace DZ5
 {
@@ -6,7 +7,7 @@ namespace DZ5
     {
         public string GetInfo()
         {
-             throw new NotImplementedException();
+            return ("Robot");
         }
 
         public List<string> GetComponent(List<string> list)
@@ -14,10 +15,11 @@ namespace DZ5
             return list;
         }
 
-        public string GetRobotType()
+        virtual string GetRobotType()
         {
             return "I am a simple robot.";
         }
+
     }
 
     interface IChargeable
@@ -31,7 +33,7 @@ namespace DZ5
 
         string GetInfo()
         {
-            throw new NotImplementedException();
+            return ("Charge");
         }
     }
 
@@ -45,9 +47,38 @@ namespace DZ5
 
     class Quadcopter : IFlyingRobot, IChargeable
     {
-        public List<string> List_components = new List <string> { "rotor1", "rotor2", "rotor3", "rotor4" };
-        
+        public List<string> List_components = new List<string> { "rotor1", "rotor2", "rotor3", "rotor4" };
+
+        public List<string> GetComponent(List<string> List_components)
+        {
+            return List_components;
+        }
+
+        public string GetInfo()
+        {
+            return "Get Info";
+        }
+
+        public string GetRobotType()
+        {
+            return "I am a robot";
+        }
+
     }
 
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Quadcopter quadcopter = new Quadcopter();
 
+            var a = quadcopter.GetRobotType();
+            Console.WriteLine(a);
+            a = quadcopter.GetInfo();
+            Console.WriteLine(a);
+
+            IChargeable charge = new Quadcopter();
+            charge.Charge();
+        }
+    }
 }
