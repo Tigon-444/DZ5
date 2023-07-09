@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-
-namespace DZ5
+﻿namespace DZ5
 {
     interface IRobot
     {
@@ -54,15 +51,9 @@ namespace DZ5
             return List_components;
         }
 
-        public string GetInfo()
-        {
-            return "Get Info";
-        }
+        //public virtual string GetInfo() => "Get Info";
 
-        public string GetRobotType()
-        {
-            return "I am a robot";
-        }
+        public string GetRobotType() => "I am a robot";
 
     }
 
@@ -74,8 +65,15 @@ namespace DZ5
 
             var a = quadcopter.GetRobotType();
             Console.WriteLine(a);
-            a = quadcopter.GetInfo();
-            Console.WriteLine(a);
+
+            IRobot robot = new Quadcopter();
+            var a1 = robot.GetInfo();
+            Console.WriteLine(a1);
+
+            IChargeable robot2 = new Quadcopter();
+            var a2 = robot2.GetInfo();
+            Console.WriteLine(a2);
+
 
             IChargeable charge = new Quadcopter();
             charge.Charge();
