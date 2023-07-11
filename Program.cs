@@ -46,12 +46,13 @@
     {
         public List<string> List_components = new List<string> { "rotor1", "rotor2", "rotor3", "rotor4" };
 
+        string IRobot.GetInfo() => "Quadcopter Robot";
+        string IChargeable.GetInfo() => "Quadcopter Charge";
+
         public List<string> GetComponent(List<string> List_components)
         {
             return List_components;
         }
-
-        //public virtual string GetInfo() => "Get Info";
 
         public string GetRobotType() => "I am a robot";
 
@@ -73,7 +74,6 @@
             IChargeable robot2 = new Quadcopter();
             var a2 = robot2.GetInfo();
             Console.WriteLine(a2);
-
 
             IChargeable charge = new Quadcopter();
             charge.Charge();
